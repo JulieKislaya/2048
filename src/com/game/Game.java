@@ -9,9 +9,18 @@ public class Game {
    static Field field=new Field();
     public static void main(String[] args) throws IOException {
         field.printField();
-        char c= (char) System.in.read();
-       if(list.contains(c)) {
-           System.out.println("correct symbol, let's game");
-       }
+
+        while (!field.isGameOver()){
+            char c= (char) System.in.read();
+            if(list.contains(c)) {
+                System.out.println("correct symbol, let's game");
+                field.handleAction(c);
+                field.addCellValue();
+                field.printField();
+            }
+        }
+
+
     }
+
 }
