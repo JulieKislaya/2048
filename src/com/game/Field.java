@@ -3,6 +3,7 @@ package com.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Field {
     private List<Cell> cellList;
@@ -35,5 +36,12 @@ public class Field {
             }
         }
         throw new IllegalArgumentException();
+    }
+    public void addCellValue(){
+        List<Cell> emptyCells = cellList.stream().filter(cell -> cell.getValue() == null).collect(Collectors.toList());
+        Random random=new Random();
+        emptyCells.get(random.nextInt(emptyCells.size())).setValue(
+              random.nextInt(10)==7? 4:2
+        );
     }
 }
